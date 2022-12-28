@@ -4,7 +4,8 @@ import router from "./router";
 import store from "./store";
 
 // BOOTSTRAP
-// import ''
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 
 // CUSTOM CSS
 import "./sass/style.scss";

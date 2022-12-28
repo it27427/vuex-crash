@@ -1,7 +1,6 @@
 <script>
 /** 
 ** HEADER COMPONENT
-** MAIN COMPONENT
 ** FOOTER COMPONENT
 **/
 import HeaderComponent from "@/components/HeaderComponent/HeaderComponent.vue";
@@ -17,5 +16,6 @@ export default {
 
 <template>
   <header-component></header-component>
+  <router-view/>
   <footer-component></footer-component>
 </template>

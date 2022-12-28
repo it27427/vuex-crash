@@ -4,6 +4,7 @@ $dark-text: #1c2334;
 
 // BACKGROUND-COLORS
 $body-background: #f5f7f8;
+$green: #4FC08D;
 
 $success: #42b983;
 
@@ -14,10 +15,348 @@ $black: #000000;
 // FONTS
 $font-primary: "Hind Siliguri", sans-serif;
 
+$breakpoints: (
+	mobile: 360,
+	smartphone: 576,
+	tablet: 768,
+	laptop: 992,
+	largetab: 1024,
+	desktop: 1100,
+	laptoplarge: 1200,
+	desktopmid: 1367,
+	desktoplarge: 1400,
+	deskextra: 1600,
+	deskxxl: 1800
+);
+$time: 300ms;
+
+// FUNCTIONS
+@function size($size, $base: 16) {
+  @return calc($size / $base) + rem;
+}
+
+@function breakpoint($breakpoint) {
+	@return map-get($breakpoints, $breakpoint);
+}
+
+@function break($point, $base: 16) {
+	@return calc(breakpoint($point) / $base) + rem;
+}
+
 // MIXINS
+@mixin breakpoint($breakpoints) {
+	@if $breakpoints==mobile {
+		@media screen and (min-width: break(mobile)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==smartphone {
+		@media screen and (min-width: break(smartphone)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==tablet {
+		@media screen and (min-width: break(tablet)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==laptop {
+		@media screen and (min-width: break(laptop)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==largetab {
+		@media screen and (min-width: break(largetab)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==desktop {
+		@media screen and (min-width: break(desktop)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==laptoplarge {
+		@media screen and (min-width: break(laptoplarge)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==desktopmid {
+		@media screen and (min-width: break(desktopmid)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==desktoplarge {
+		@media screen and (min-width: break(desktoplarge)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==desktoplarge {
+		@media screen and (min-width: break(desktoplarge)) {
+			@content;
+		}
+	}
+
+	@else if $breakpoints==deskxxl {
+		@media screen and (min-width: break(deskxxl)) {
+			@content;
+		}
+	}
+}
+
+@mixin square($width, $height: $width) {
+  width: size($width);
+  height: size($height);
+}
+
 @mixin setBgColor($bg, $color) {
-  background: $bg;
+  background-color: $bg;
   color: $color;
+}
+
+@mixin flex {
+  display: flex;
+}
+
+@mixin flex-vert {
+  @include flex;
+  align-items: center;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin line-clamp {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+}
+
+@mixin text-overflow {
+	max-width: 99%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@mixin position($position, $args) {
+  position: $position;
+  @each $o in top right bottom left {
+    $i: index($args, $o);
+ 
+    @if $i and $i + 1<= length($args) and type-of(nth($args, $i + 1)) == number  {
+      #{$o}: nth($args, $i + 1);
+    }
+  }
+}
+
+@mixin absolute($args) {
+  @include position(absolute, $args);
+}
+ 
+@mixin fixed($args) {
+  @include position(fixed, $args);
+}
+ 
+@mixin relative($args) {
+  @include position(relative, $args);
+}
+
+@mixin transform($transforms) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	transform: $transforms;
+}
+
+@mixin rotate($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+@mixin rotateX($deg) {
+  @include transform(rotateX(#{$deg}deg));
+}
+
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
+
+@mixin translate($x, $y) {
+  @include transform(translate($x, $y));
+}
+
+@mixin translateX($x) {
+  @include transform(translateX($x));
+}
+
+@mixin translateY($y) {
+  @include transform(translateY($y));
+}
+
+@mixin skew($x, $y) {
+  @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+@mixin cover-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin transition($args...) {
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-ms-transition: $args;
+	-o-transition: $args;
+	transition: $args;
+}
+
+// EXTENDS [ANIMATIONS]
+%animation {
+	animation-duration: $time;
+	animation-fill-mode: both;
+}
+
+%slideDownIn {
+	animation-name: slideDownIn;
+}
+
+%slideDownInMobile {
+	animation-name: slideDownInMobile;
+}
+
+%slideUpIn {
+	animation-name: slideUpIn;
+}
+
+%slideUpInMobile {
+	animation-name: slideUpInMobile;
+}
+
+%slideLeftIn {
+	animation-name: slideLeftIn;
+}
+
+%slideRightIn {
+	animation-name: slideRightIn;
+}
+
+%floating {
+	animation-name: floating;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+// KEYFRAME-ANIMATIONS
+@keyframes slideDownIn {
+	0% {
+		@include transform(translateY(-100%));
+	}
+
+	100% {
+		@include transform(translateY(0));
+	}
+
+	0% {
+		@include transform(translateY(-100%));
+	}
+}
+
+@keyframes slideDownInMobile {
+	0% {
+		@include transform(translateY(size(-20)));
+	}
+
+	100% {
+		@include transform(translateY(size(10)));
+	}
+
+	0% {
+		@include transform(translateY(size(-20)));
+	}
+}
+
+@keyframes slideUpIn {
+	0% {
+		@include transform(translateY(size(-20)));
+	}
+
+	100% {
+		@include transform(translateY(0));
+	}
+
+	0% {
+		@include transform(translateY(size(20)));
+	}
+}
+
+@keyframes slideUpInMobile {
+	0% {
+		@include transform(translateY(size(40)));
+	}
+
+	100% {
+		@include transform(translateY(size(25)));
+	}
+
+	0% {
+		@include transform(translateY(size(40)));
+	}
+}
+
+@keyframes slideLeftIn {
+	0% {
+		@include transform(translateX(size(100)));
+	}
+
+	100% {
+		@include transform(translateX(0));
+	}
+
+	0% {
+		@include transform(translateX(size(-100)));
+	}
+}
+
+@keyframes slideRightIn {
+	0% {
+		@include transform(translateX(size(100)));
+	}
+
+	100% {
+		@include transform(translateX(0));
+	}
+
+	0% {
+		@include transform(translateX(size(100)));
+	}
+}
+
+@keyframes floating {
+	0% {
+		@include transform(translateY(0%));
+	}
+
+	50% {
+		@include transform(translateY(1%));
+	}
+
+	100% {
+		@include transform(translateY(0%));
+	}
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
@@ -135,6 +474,7 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
+  color: inherit;
   font: inherit;
   vertical-align: baseline;
 
@@ -172,23 +512,43 @@ h6 {
 }
 
 h1 {
-  font-size: 3.052rem;
+  font-size: 2.441rem;
+
+  @include breakpoint(laptop) {
+    font-size: 3.052rem;
+  }
 }
 
 h2 {
-  font-size: 2.441rem;
+  font-size: 1.953rem;
+
+  @include breakpoint(laptop) {
+    font-size: 2.441rem;
+  }
 }
 
 h3 {
-  font-size: 1.953rem;
+  font-size: 1.563rem;
+
+  @include breakpoint(laptop) {
+    font-size: 1.953rem;
+  }
 }
 
 h4 {
-  font-size: 1.563rem;
+  font-size: 1.25rem;
+
+  @include breakpoint(laptop) {
+    font-size: 1.563rem;
+  }
 }
 
 h5 {
-  font-size: 1.25rem;
+  font-size: 1.215rem;
+
+  @include breakpoint(laptop) {
+    font-size: 1.25rem;
+  }
 }
 
 small {
@@ -197,7 +557,6 @@ small {
 
 img,
 picture {
-  display: block;
   max-width: 100%;
   height: auto;
 }
@@ -207,6 +566,10 @@ ul {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 input,
 textarea,
 select {
@@ -214,4 +577,58 @@ select {
     outline: none;
     box-shadow: none;
   }
+}
+
+/**
+** HEADER-COMPONENT
+**/
+.header {
+  background-color: $primary-text;
+
+  .logo {
+    @include flex-center;
+    width: size(100);
+    height: size(64);
+    // padding: size(12) 0;
+
+    &-text {
+      color: $success;
+      font-size: size(32);
+      font-weight: 600;
+    }
+
+    &-icon {
+      @include square(48);
+      @include flex-center;
+    }
+  }
+
+  .desktoplist {
+    &-link {
+      color: $white;
+      font-size: size(16);
+      font-weight: 500;
+      @include flex-center;
+      height: size(64);
+      padding: 0 size(10);
+      text-transform: uppercase;
+      transition: 250ms;
+
+      &:hover:not(.router-link-active) {
+        color: $success;
+      }
+
+      &.router-link-active {
+        color: $success;
+      }
+    }
+  }
+}
+
+/**
+** FOOTER
+**/
+.footer {
+  background: $primary-text;
+  height: size(48);
 }

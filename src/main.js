@@ -3,12 +3,17 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-// BOOTSTRAP
+/** 
+** BOOTSTRAP CSS AND BOOTSTRAP BUNDLE JS
+**/
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 
-// CUSTOM CSS
-import "./sass/style.scss";
+
+/** 
+** APP CSS (CUSTOM)
+**/
+import "./sass/app.scss";
 
 const app = createApp(App);
 

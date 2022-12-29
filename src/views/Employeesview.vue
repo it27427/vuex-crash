@@ -1,16 +1,16 @@
 <script>
-import EmployeesComponent from '@/components/EmployeesComponent/EmployeesComponent.vue';
+import EmployeesComponent from "@/components/vuex/EmployeesComponent.vue";
 
 export default {
   name: "EmployeesView",
   components: {
-    EmployeesComponent
-  }
+    EmployeesComponent,
+  },
 };
 </script>
 
 <template>
-  <section class="users">
-    <employees-component/>
+  <section class="employees pt-5 min-vh-100">
+    <employees-component />
   </section>
 </template>

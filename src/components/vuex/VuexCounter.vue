@@ -1,22 +1,24 @@
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "CounterComponent",
-  data() {
-    return {
-      count: 0,
-    };
-  },
+  name: "VuexCounter",
   methods: {
     increment() {
-      this.count += 1;
+      this.$store.dispatch("counterModule/incrementCounter");
     },
     decrement() {
-      this.count -= 1;
+      this.$store.dispatch("counterModule/decrementCounter");
     },
     incrementBy(value) {
-      this.count += value;
+      this.$store.dispatch("counterModule/incrementCounterBy", {
+        value: value,
+      });
     },
   },
+  computed: mapGetters({
+    counterState: "getCounterState",
+  }),
 };
 </script>
 
@@ -45,7 +47,7 @@ export default {
         <div class="col-md-4">
           <div class="card border-0 shadow-lg">
             <div class="card-body">
-              <h3 class="display-3">{{ count }}</h3>
+              <h3 class="display-3">{{ counterState.count }}</h3>
               <div class="d-flex flex-wrap gap-2">
                 <button @click="increment" class="btn btn-success">
                   Increment

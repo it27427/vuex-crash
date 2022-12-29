@@ -1,61 +1,18 @@
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "EmployeesComponent",
-  data() {
-    return {
-      employees: [
-        {
-          id: 1,
-          name: "Leanne Graham",
-          username: "Bret",
-          email: "Sincere@april.biz",
-          isSelected: false,
-        },
-        {
-          id: 2,
-          name: "Ervin Howell",
-          username: "Antonette",
-          email: "Shanna@melissa.tv",
-          isSelected: false,
-        },
-        {
-          id: 3,
-          name: "Clementine Bauch",
-          username: "Samantha",
-          email: "Nathan@yesenia.net",
-          isSelected: false,
-        },
-        {
-          id: 4,
-          name: "Patricia Lebsack",
-          username: "Karianne",
-          email: "Julianne.OConner@kory.org",
-          isSelected: false,
-        },
-        {
-          id: 5,
-          name: "Chelsey Dietrich",
-          username: "Kamren",
-          email: "Lucio_Hettinger@annie.ca",
-          isSelected: false,
-        },
-      ],
-    };
-  },
   methods: {
     updateSelected(empId) {
-      this.employees = this.employees.map((employee) => {
-        if (employee.id === empId) {
-          return {
-            ...employee,
-            isSelected: !employee.isSelected,
-          };
-        } else {
-          return employee;
-        }
+      this.$store.dispatch("employeeModule/changeSelected", {
+        empId: empId,
       });
     },
   },
+  computed: mapGetters({
+    employeeState: "getEmployeeState",
+  }),
 };
 </script>
 
@@ -84,7 +41,7 @@ export default {
         <div class="col-md-6">
           <ul class="list-group">
             <li
-              v-for="employee in employees"
+              v-for="employee in employeeState.employees"
               :key="employee.id"
               class="list-group-item list-group-item-success"
             >
@@ -93,6 +50,7 @@ export default {
                 :id="`emp-${employee.id}`"
                 class="checkfield"
                 @change="updateSelected(employee.id)"
+                :checked="employee.isSelected"
                 hidden
               />
               <label :for="`emp-${employee.id}`" class="customcheck">
@@ -103,7 +61,7 @@ export default {
         </div>
 
         <div class="col-md-6">
-          <div v-for="employee of employees" :key="employee.id">
+          <div v-for="employee of employeeState.employees" :key="employee.id">
             <div v-if="employee.isSelected" class="card border-0 mb-2">
               <div class="card-body list-group-item-success">
                 <ul class="list-group">

@@ -4,7 +4,7 @@ $dark-text: #1c2334;
 
 // BACKGROUND-COLORS
 $body-background: #f5f7f8;
-$green: #4FC08D;
+$green: #4fc08d;
 
 $success: #42b983;
 
@@ -16,17 +16,17 @@ $black: #000000;
 $font-primary: "Hind Siliguri", sans-serif;
 
 $breakpoints: (
-	mobile: 360,
-	smartphone: 576,
-	tablet: 768,
-	laptop: 992,
-	largetab: 1024,
-	desktop: 1100,
-	laptoplarge: 1200,
-	desktopmid: 1367,
-	desktoplarge: 1400,
-	deskextra: 1600,
-	deskxxl: 1800
+  mobile: 360,
+  smartphone: 576,
+  tablet: 768,
+  laptop: 992,
+  largetab: 1024,
+  desktop: 1100,
+  laptoplarge: 1200,
+  desktopmid: 1367,
+  desktoplarge: 1400,
+  deskextra: 1600,
+  deskxxl: 1800,
 );
 $time: 300ms;
 
@@ -36,80 +36,60 @@ $time: 300ms;
 }
 
 @function breakpoint($breakpoint) {
-	@return map-get($breakpoints, $breakpoint);
+  @return map-get($breakpoints, $breakpoint);
 }
 
 @function break($point, $base: 16) {
-	@return calc(breakpoint($point) / $base) + rem;
+  @return calc(breakpoint($point) / $base) + rem;
 }
 
 // MIXINS
 @mixin breakpoint($breakpoints) {
-	@if $breakpoints==mobile {
-		@media screen and (min-width: break(mobile)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==smartphone {
-		@media screen and (min-width: break(smartphone)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==tablet {
-		@media screen and (min-width: break(tablet)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==laptop {
-		@media screen and (min-width: break(laptop)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==largetab {
-		@media screen and (min-width: break(largetab)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==desktop {
-		@media screen and (min-width: break(desktop)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==laptoplarge {
-		@media screen and (min-width: break(laptoplarge)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==desktopmid {
-		@media screen and (min-width: break(desktopmid)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==desktoplarge {
-		@media screen and (min-width: break(desktoplarge)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==desktoplarge {
-		@media screen and (min-width: break(desktoplarge)) {
-			@content;
-		}
-	}
-
-	@else if $breakpoints==deskxxl {
-		@media screen and (min-width: break(deskxxl)) {
-			@content;
-		}
-	}
+  @if $breakpoints==mobile {
+    @media screen and (min-width: break(mobile)) {
+      @content;
+    }
+  } @else if $breakpoints==smartphone {
+    @media screen and (min-width: break(smartphone)) {
+      @content;
+    }
+  } @else if $breakpoints==tablet {
+    @media screen and (min-width: break(tablet)) {
+      @content;
+    }
+  } @else if $breakpoints==laptop {
+    @media screen and (min-width: break(laptop)) {
+      @content;
+    }
+  } @else if $breakpoints==largetab {
+    @media screen and (min-width: break(largetab)) {
+      @content;
+    }
+  } @else if $breakpoints==desktop {
+    @media screen and (min-width: break(desktop)) {
+      @content;
+    }
+  } @else if $breakpoints==laptoplarge {
+    @media screen and (min-width: break(laptoplarge)) {
+      @content;
+    }
+  } @else if $breakpoints==desktopmid {
+    @media screen and (min-width: break(desktopmid)) {
+      @content;
+    }
+  } @else if $breakpoints==desktoplarge {
+    @media screen and (min-width: break(desktoplarge)) {
+      @content;
+    }
+  } @else if $breakpoints==desktoplarge {
+    @media screen and (min-width: break(desktoplarge)) {
+      @content;
+    }
+  } @else if $breakpoints==deskxxl {
+    @media screen and (min-width: break(deskxxl)) {
+      @content;
+    }
+  }
 }
 
 @mixin square($width, $height: $width) {
@@ -131,6 +111,11 @@ $time: 300ms;
   align-items: center;
 }
 
+@mixin flex-column {
+  @include flex;
+  flex-direction: column;
+}
+
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -138,26 +123,27 @@ $time: 300ms;
 }
 
 @mixin line-clamp {
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	-webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
 }
 
 @mixin text-overflow {
-	max-width: 99%;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  max-width: 99%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @mixin position($position, $args) {
   position: $position;
   @each $o in top right bottom left {
     $i: index($args, $o);
- 
-    @if $i and $i + 1<= length($args) and type-of(nth($args, $i + 1)) == number  {
+
+    @if $i and $i + 1<= length($args) and type-of(nth($args, $i + 1)) == number
+    {
       #{$o}: nth($args, $i + 1);
     }
   }
@@ -166,20 +152,20 @@ $time: 300ms;
 @mixin absolute($args) {
   @include position(absolute, $args);
 }
- 
+
 @mixin fixed($args) {
   @include position(fixed, $args);
 }
- 
+
 @mixin relative($args) {
   @include position(relative, $args);
 }
 
 @mixin transform($transforms) {
-	-webkit-transform: $transforms;
-	-moz-transform: $transforms;
-	-ms-transform: $transforms;
-	transform: $transforms;
+  -webkit-transform: $transforms;
+  -moz-transform: $transforms;
+  -ms-transform: $transforms;
+  transform: $transforms;
 }
 
 @mixin rotate($deg) {
@@ -217,146 +203,188 @@ $time: 300ms;
 }
 
 @mixin transition($args...) {
-	-webkit-transition: $args;
-	-moz-transition: $args;
-	-ms-transition: $args;
-	-o-transition: $args;
-	transition: $args;
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin border($style, $width, $color, $base: 16) {
+  border: $style ((calc($width / $base) + rem)) $color;
+}
+
+@mixin border-single($direction, $style, $width, $color, $base: 16) {
+  border-#{$direction}: $style ((calc($width / $base) + rem)) $color;
+}
+
+@mixin radius($radius) {
+  border-radius: size($radius);
+  -webkit-border-radius: size($radius);
+  -moz-border-radius: size($radius);
+  -ms-border-radius: size($radius);
+  -o-border-radius: size($radius);
+  border-radius: size($radius);
+}
+
+@mixin percentradius($percentage) {
+  -webkit-border-radius: $percentage;
+  -moz-border-radius: $percentage;
+  -ms-border-radius: $percentage;
+  -o-border-radius: $percentage;
+  border-radius: $percentage;
+}
+
+@mixin circle {
+  @include percentradius(100%);
+}
+
+@mixin single-radius($dir1, $dir2, $radius) {
+  -webkit-border-#{$dir1}-#{$dir2}-radius: size($radius);
+  -moz-border-#{$dir1}-#{$dir2}-radius: size($radius);
+  -ms-border-#{$dir1}-#{$dir2}-radius: size($radius);
+  -o-border-#{$dir1}-#{$dir2}-radius: size($radius);
+  border-#{$dir1}-#{$dir2}-radius: size($radius);
+}
+
+@mixin double-radius($dir1, $dir2, $r1, $dir3, $dir4, $r2) {
+  border-#{$dir1}-#{$dir2}-radius: size($r1);
+  border-#{$dir3}-#{$dir4}-radius: size($r2);
 }
 
 // EXTENDS [ANIMATIONS]
 %animation {
-	animation-duration: $time;
-	animation-fill-mode: both;
+  animation-duration: $time;
+  animation-fill-mode: both;
 }
 
 %slideDownIn {
-	animation-name: slideDownIn;
+  animation-name: slideDownIn;
 }
 
 %slideDownInMobile {
-	animation-name: slideDownInMobile;
+  animation-name: slideDownInMobile;
 }
 
 %slideUpIn {
-	animation-name: slideUpIn;
+  animation-name: slideUpIn;
 }
 
 %slideUpInMobile {
-	animation-name: slideUpInMobile;
+  animation-name: slideUpInMobile;
 }
 
 %slideLeftIn {
-	animation-name: slideLeftIn;
+  animation-name: slideLeftIn;
 }
 
 %slideRightIn {
-	animation-name: slideRightIn;
+  animation-name: slideRightIn;
 }
 
 %floating {
-	animation-name: floating;
-	animation-duration: 2s;
-	animation-iteration-count: infinite;
+  animation-name: floating;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
 }
 
 // KEYFRAME-ANIMATIONS
 @keyframes slideDownIn {
-	0% {
-		@include transform(translateY(-100%));
-	}
+  0% {
+    @include transform(translateY(-100%));
+  }
 
-	100% {
-		@include transform(translateY(0));
-	}
+  100% {
+    @include transform(translateY(0));
+  }
 
-	0% {
-		@include transform(translateY(-100%));
-	}
+  0% {
+    @include transform(translateY(-100%));
+  }
 }
 
 @keyframes slideDownInMobile {
-	0% {
-		@include transform(translateY(size(-20)));
-	}
+  0% {
+    @include transform(translateY(size(-20)));
+  }
 
-	100% {
-		@include transform(translateY(size(10)));
-	}
+  100% {
+    @include transform(translateY(size(10)));
+  }
 
-	0% {
-		@include transform(translateY(size(-20)));
-	}
+  0% {
+    @include transform(translateY(size(-20)));
+  }
 }
 
 @keyframes slideUpIn {
-	0% {
-		@include transform(translateY(size(-20)));
-	}
+  0% {
+    @include transform(translateY(size(-20)));
+  }
 
-	100% {
-		@include transform(translateY(0));
-	}
+  100% {
+    @include transform(translateY(0));
+  }
 
-	0% {
-		@include transform(translateY(size(20)));
-	}
+  0% {
+    @include transform(translateY(size(20)));
+  }
 }
 
 @keyframes slideUpInMobile {
-	0% {
-		@include transform(translateY(size(40)));
-	}
+  0% {
+    @include transform(translateY(size(40)));
+  }
 
-	100% {
-		@include transform(translateY(size(25)));
-	}
+  100% {
+    @include transform(translateY(size(25)));
+  }
 
-	0% {
-		@include transform(translateY(size(40)));
-	}
+  0% {
+    @include transform(translateY(size(40)));
+  }
 }
 
 @keyframes slideLeftIn {
-	0% {
-		@include transform(translateX(size(100)));
-	}
+  0% {
+    @include transform(translateX(size(100)));
+  }
 
-	100% {
-		@include transform(translateX(0));
-	}
+  100% {
+    @include transform(translateX(0));
+  }
 
-	0% {
-		@include transform(translateX(size(-100)));
-	}
+  0% {
+    @include transform(translateX(size(-100)));
+  }
 }
 
 @keyframes slideRightIn {
-	0% {
-		@include transform(translateX(size(100)));
-	}
+  0% {
+    @include transform(translateX(size(100)));
+  }
 
-	100% {
-		@include transform(translateX(0));
-	}
+  100% {
+    @include transform(translateX(0));
+  }
 
-	0% {
-		@include transform(translateX(size(100)));
-	}
+  0% {
+    @include transform(translateX(size(100)));
+  }
 }
 
 @keyframes floating {
-	0% {
-		@include transform(translateY(0%));
-	}
+  0% {
+    @include transform(translateY(0%));
+  }
 
-	50% {
-		@include transform(translateY(1%));
-	}
+  50% {
+    @include transform(translateY(1%));
+  }
 
-	100% {
-		@include transform(translateY(0%));
-	}
+  100% {
+    @include transform(translateY(0%));
+  }
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
@@ -559,6 +587,7 @@ img,
 picture {
   max-width: 100%;
   height: auto;
+  @include flex;
 }
 
 ol,
@@ -622,6 +651,57 @@ select {
         color: $success;
       }
     }
+  }
+}
+
+.checkfield {
+  &:checked ~ .customcheck {
+    &::before {
+      background: $success;
+    }
+
+    &::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.customcheck {
+  cursor: pointer;
+  position: relative;
+  @include flex-vert;
+  padding-left: size(26);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    @include translateY(-50%);
+  }
+
+  &::before {
+    left: 0;
+    @include square(18);
+    @include border(solid, 1, $dark-text);
+    @include border(solid, 1, $success);
+    background: transparent;
+    @include transition($time);
+  }
+
+  &::after {
+    width: size(10);
+    height: size(5);
+    left: size(4);
+    top: 32%;
+    @include border(solid, 2, $white);
+    border-top: 0;
+    border-right: 0;
+    @include rotate(-45);
+    opacity: 0;
+    visibility: hidden;
+    @include transition($time);
   }
 }
 

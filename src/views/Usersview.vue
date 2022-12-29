@@ -1,16 +1,16 @@
 <script>
-import UserList from '@/components/UserList/UserList.vue';
+import UserList from "@/components/vuex/UserList.vue";
 
 export default {
   name: "UsersView",
   components: {
-    UserList
-  }
+    UserList,
+  },
 };
 </script>
 
 <template>
-  <section class="users">
-    <user-list/>
+  <section class="users pt-5 min-vh-100">
+    <user-list />
   </section>
 </template>

@@ -1,11 +1,11 @@
 <script>
-import CounterComponent from '@/components/CounterComponent/CounterComponent.vue';
+import VuexCounter from "@/components/vuex/VuexCounter.vue";
 
 export default {
   name: "HomeView",
   components: {
-    CounterComponent
-  }
+    VuexCounter,
+  },
 };
 </script>
 
@@ -15,12 +15,12 @@ export default {
       <div class="row">
         <div class="col">
           <figure class="vuex-thumb mx-auto text-center py-5">
-            <img src="@/assets/images/vuex.png" alt="vuex-thumbnail">
+            <img src="@/assets/images/vuex.png" alt="vuex-thumbnail" />
           </figure>
         </div>
       </div>
     </div>
 
-    <counter-component />
+    <vuex-counter />
   </section>
 </template>
